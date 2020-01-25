@@ -5,10 +5,9 @@
   outline: .2px solid grey;
 }
 
-.highlight {
-  background-color: yellowgreen;
-}
-
 .valid {
   cursor: pointer;
+  &:hover {
+    background-color: yellowgreen;
+  }
 }

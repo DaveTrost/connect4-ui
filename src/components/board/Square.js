@@ -8,7 +8,6 @@ const Square = ({ id, status, selected, handleClick }) => (
     key={ id }
     className={`
       ${styles.Square} 
-      ${(status === 'valid' && selected) ? styles.highlight : ''}
       ${(status === 'valid') ? styles.valid : ''}
     `}
     onClick={handleClick}
