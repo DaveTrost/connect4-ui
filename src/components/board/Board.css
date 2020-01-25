@@ -1,0 +1,15 @@
+.Board {
+  box-sizing: content-box;
+  display: grid;
+  grid-template-columns: repeat(4, 10vh);
+  grid-template-rows: repeat(4, 10vh);
+
+  width: 80vh;
+  border: 0.15em solid black;
+
+  @media (orientation: portrait) {
+    width: 80vw;
+    grid-template-columns: repeat(4, 10vw);
+    grid-template-rows: repeat(4, 10vw);
+  }
+}
