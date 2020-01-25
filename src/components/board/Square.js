@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Square.css';
 import Checker from './Checker';
 
-const Square = ({ id, status, selected, handleClick }) => (
+const Square = ({ id, status, handleClick }) => (
   <section 
     key={ id }
     className={`
@@ -20,7 +20,6 @@ const Square = ({ id, status, selected, handleClick }) => (
 Square.propTypes = {
   id: PropTypes.string.isRequired,
   status: PropTypes.oneOf(['red', 'black', 'open', 'valid']).isRequired,
-  selected: PropTypes.bool,
   handleClick: PropTypes.func.isRequired
 };
 
