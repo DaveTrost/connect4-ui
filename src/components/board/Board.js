@@ -5,17 +5,19 @@ import styles from './Board.css';
 
 const Board = ({ board, handleClick }) => (
   <div className={styles.Board}>
-    {board.flat().map(square => (
+    {board.map(square => (
       <Square key={square.id} {...square} handleClick={() => handleClick(square)} />
     ))}
   </div>
 );
 
 Board.propTypes = {
-  board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    status: PropTypes.oneOf(['red', 'black', 'open', 'valid']).isRequired,
-  }))).isRequired,
+  board: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      status: PropTypes.oneOf(['red', 'black', 'open', 'valid']).isRequired,
+    }).isRequired
+  ).isRequired,
   handleClick: PropTypes.func.isRequired
 };
 
