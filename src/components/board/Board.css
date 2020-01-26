@@ -2,14 +2,14 @@
   box-sizing: content-box;
   display: grid;
   grid-template-columns: repeat(7, 10vh);
-  grid-template-rows: repeat(7, 10vh);
+  grid-template-rows: repeat(6, 10vh);
 
-  width: 80vh;
+  width: 70vh;
   border: 0.15em solid black;
 
   @media (orientation: portrait) {
-    width: 80vw;
+    width: 70vw;
     grid-template-columns: repeat(7, 10vw);
-    grid-template-rows: repeat(7, 10vw);
+    grid-template-rows: repeat(6, 10vw);
   }
 }
