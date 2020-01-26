@@ -6,14 +6,10 @@ import Checker from './Checker';
 const Square = ({ id, status, handleClick, motif }) => (
   <section 
     key={ id }
-    className={`
-      ${styles.Square} 
-      ${(status === 'valid') ? styles.valid : ''}
-    `}
+    className={`${styles.Square} ${(status === 'valid') ? styles.valid : ''}`}
     onClick={handleClick}
   >
-    {status === 'red' && <Checker color='red' motif={motif}/>}
-    {status === 'black' && <Checker color='black' motif={motif}/>}
+    <Checker status={status} motif={motif}/>
   </section>
 );
 
