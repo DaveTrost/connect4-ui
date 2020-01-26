@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Checker.css';
+import redChecker from '../../assets/redChecker.png';
+import blackChecker from '../../assets/blackChecker.png';
+import dog from '../../assets/dog.png';
+import cat from '../../assets/cat.jpg';
+import beer from '../../assets/beer.png';
+import wine from '../../assets/wine.png';
 
 const getPieceStyle = motif => {
   if(motif === 'pets') return [true, false, false];
@@ -9,20 +15,20 @@ const getPieceStyle = motif => {
 };
 
 const Checker = ({ color, motif }) => {
-  const [catdog, drinks, checkers] = getPieceStyle(motif);
+  const [pets, drinks, checkers] = getPieceStyle(motif);
 
   const redPiece = (
     <>
-      {checkers && <img src={'https://cdn0.iconfinder.com/data/icons/board-games-flat-1/48/Games_BoardGames_Artboard_14-512.png'} />}
-      {drinks && <img className={styles.wine} src={'https://iconsplace.com/wp-content/uploads/_icons/000000/256/png/wine-glass-icon-256.png'} />}
-      {catdog && <img src={'https://png.pngtree.com/svg/20170117/dog_15395.png'} />}
+      {checkers && <img src={redChecker} />}
+      {pets && <img src={dog} />}
+      {drinks && <img className={styles.wine} src={wine} />}
     </>
   );
   const blackPiece = (
     <>
-      {checkers && <img src={'https://cdn0.iconfinder.com/data/icons/board-games-colored-1/48/Games_BoardGames_Artboard_15-512.png'} />}
-      {drinks && <img className={styles.beer} src={'https://www.spinningwheelinn.co.uk/wp-content/uploads/2014/04/red-beer-icon-h-200-w300.png'} />}
-      {catdog && <img className={styles.cat} src={'https://icon-library.net/images/cat-icon-free/cat-icon-free-0.jpg'} />}
+      {checkers && <img src={blackChecker} />}
+      {pets && <img className={styles.cat} src={cat} />}
+      {drinks && <img className={styles.beer} src={beer} />}
     </>
   );
   
