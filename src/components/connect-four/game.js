@@ -49,7 +49,7 @@ const ConnectFour = ({ playerNames }) => {
   return (
     <>
       <p>{`${playerNames[playerIndex]}'s turn (${colors[playerIndex]})`}</p>
-      <Board board={board} handleClick={handlePlay}/>
+      <Board board={board} handleClick={handlePlay} motif='pets' />
     </>
   );
 };

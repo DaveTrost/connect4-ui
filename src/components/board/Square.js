@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Square.css';
 import Checker from './Checker';
 
-const Square = ({ id, status, handleClick }) => (
+const Square = ({ id, status, handleClick, motif }) => (
   <section 
     key={ id }
     className={`
@@ -12,15 +12,16 @@ const Square = ({ id, status, handleClick }) => (
     `}
     onClick={handleClick}
   >
-    {status === 'red' && <Checker color='red'/>}
-    {status === 'black' && <Checker color='black'/>}
+    {status === 'red' && <Checker color='red' motif={motif}/>}
+    {status === 'black' && <Checker color='black' motif={motif}/>}
   </section>
 );
 
 Square.propTypes = {
   id: PropTypes.string.isRequired,
   status: PropTypes.oneOf(['red', 'black', 'open', 'valid']).isRequired,
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
+  motif: PropTypes.string,
 };
 
 export default Square;
