@@ -4,10 +4,10 @@ import Board from '../board/Board';
 
 const ConnectFour = ({ playerNames }) => {
   const colors = ['red', 'black'];
-  const rows = 6;
   const columns = 7;
+  const rows = 6;
   if(!playerNames) {
-    playerNames = ['player1', 'player2'];
+    playerNames = ['player 1', 'player 2'];
   }
   
   const initialBoard = Array.from({ length: rows * columns }, (_, i) => {
