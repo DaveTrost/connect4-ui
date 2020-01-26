@@ -4,7 +4,8 @@ import ConnectFour from './connect-four/game';
 export default function App() {
   return (
     <>
-      <ConnectFour playerNames={['Human', 'Computer']} columns={7} rows={6}/>
+      {/* <ConnectFour playerNames={['Human', 'Computer']}/> */}
+      <ConnectFour />
     </>
   );
 }
