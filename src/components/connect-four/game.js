@@ -19,6 +19,7 @@ const ConnectFour = ({ playerNames }) => {
 
   const [board, setBoard] = useState(initialBoard);
   const [playerIndex, setPlayerIndex] = useState(0);
+  const [motif, setMotif] = useState('default');
 
   const togglePlayer = () => playerIndex ? setPlayerIndex(0) : setPlayerIndex(1);
 
@@ -49,7 +50,21 @@ const ConnectFour = ({ playerNames }) => {
   return (
     <>
       <p>{`${playerNames[playerIndex]}'s turn (${colors[playerIndex]})`}</p>
-      <Board board={board} handleClick={handlePlay} motif='pets' />
+      <Board board={board} handleClick={handlePlay} motif={motif} />
+      <p>Checker style: 
+        <label onClick={() => setMotif('default')}>
+          <input type='radio' id='default' name='motif' value='default' defaultChecked />
+          Default
+        </label>
+        <label onClick={() => setMotif('pets')}>
+          <input type='radio' id='pets' name='motif' value='pets' />
+          Pets
+        </label>
+        <label onClick={() => setMotif('drinks')}>
+          <input type='radio' id='drinks' name='motif' value='drinks' />
+          Drinks
+        </label>
+      </p>
     </>
   );
 };
