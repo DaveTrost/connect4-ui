@@ -25,6 +25,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect4-ai": "file:../connect4-ai",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
