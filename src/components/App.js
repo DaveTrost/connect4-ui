@@ -1,5 +1,5 @@
 import React from 'react';
-import ConnectFour from './connect-four/game';
+import ConnectFour from './connect-four/ConnectFour';
 
 export default function App() {
   return (
