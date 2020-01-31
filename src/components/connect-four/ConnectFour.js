@@ -1,79 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Board from '../board/Board';
 import Connect4 from 'connect4-ai';
+import useConnectFourLogic from './useConnectFourLogic';
 
 const game = new Connect4();
+const columns = 7;
+const rows = 6;
+const colors = ['red', 'black'];
+const defaultPlayerNames = ['Player 1', 'Player 2'];
 
 const ConnectFour = ({ playerNames }) => {
-  const colors = ['red', 'black'];
-  const columns = 7;
-  const rows = 6;
-  if(!playerNames) {
-    playerNames = ['player 1', 'player 2'];
-  }
-
-  const getPlayerName = () => playerNames[playerIndex];
-  const getPlayerColor = () => colors[playerIndex];
-  
-  const makeDisplay = (name, color) => `${name}'s turn (${color})`;
-  const makeId = (col, row) => `${col},${row}`;
-  const getRow = id => +id[2];
-  const getColumn = id => +id[0];
-  const getAboveId = id => makeId(getColumn(id), getRow(id) - 1);
-
-  const initialStatus = makeDisplay(playerNames[0], colors[0]);
-  const initialBoard = Array.from({ length: rows * columns }, (_, i) => {
-    const row = Math.floor(i / columns);
-    const col = i % columns;
-    const status = (row === rows - 1) ? 'valid' : 'open';
-    return { id: makeId(col, row), status };
-  });
-  
-  const [status, setStatus] = useState(initialStatus);
-  const [playerIndex, setPlayerIndex] = useState(0);
-  const [gameOver, endGame] = useState(false);
-  const [board, setBoard] = useState(initialBoard);
+  const { 
+    status,
+    updateStatus, 
+    board, 
+    updateBoard, 
+    gameOver, 
+    getColumn 
+  } = useConnectFourLogic(rows, columns, colors, playerNames || defaultPlayerNames);
   const [motif, setMotif] = useState('default');
   
-  useEffect(() => {
-    if(gameOver) {
-      setBoard(board.map(square => ({ 
-        ...square, 
-        status: (square.status === 'valid') ? 'open' : square.status
-      })));
-    }
-  }, [gameOver]);
-
-  const updateBoard = ({ playedId }) => {
-    setBoard(board.map(square => {
-      if(square.id === playedId) {
-        return { ...square, status: getPlayerColor() };
-      } 
-      if(square.id === getAboveId(playedId)) {
-        return { ...square, status: 'valid' };
-      }
-      return square;
-    }));
-  };
-
-  const updateStatus = ({ gameOver, winner }) => {
-    if(gameOver) {
-      endGame(true);
-      setStatus(winner ?
-        `${getPlayerName()} (${getPlayerColor()}) wins!` :
-        'Game Over. It is a draw.'
-      );
-    }
-    else {
-      const nextPlayerIndex = playerIndex ? 0 : 1;
-      setPlayerIndex(nextPlayerIndex);
-      setStatus(makeDisplay(playerNames[nextPlayerIndex], colors[nextPlayerIndex]));
-    }
-  };
-
-  const handlePlay = ({ id }) => {
-    if(!game.canPlay(getColumn(id)) || gameOver) return;
+  const handlePlay = ({ id, status }) => {
+    if(status !== 'valid' || gameOver) return;
     
     game.play(getColumn(id));
     updateStatus(game.gameStatus());
