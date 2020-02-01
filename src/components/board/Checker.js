@@ -13,26 +13,27 @@ const getPieceStyle = motif => {
   if(motif === 'drinks') return [false, true, false];
   return [false, false, true];
 };
+const makeStyle = src => ({ backgroundImage: `url(${src})` });
 
 const Checker = ({ status, motif }) => {
   const [pets, drinks, checkers] = getPieceStyle(motif);
 
   const redPiece = (
     <>
-      {checkers && <img src={redChecker} />}
-      {pets && <img src={dog} />}
-      {drinks && <img className={styles.beer} src={beer} />}
+      {checkers && <div style={makeStyle(redChecker)} className={`${styles.redChecker} ${styles.space} ${styles.red}`}></div>}
+      {pets && <div style={makeStyle(dog)} className={`${styles.dog} ${styles.space} ${styles.red}`}></div>}
+      {drinks && <div style={makeStyle(beer)} className={`${styles.beer} ${styles.space} ${styles.red}`}></div>}
     </>
   );
   const blackPiece = (
     <>
-      {checkers && <img src={blackChecker} />}
-      {pets && <img className={styles.cat} src={cat} />}
-      {drinks && <img className={styles.wine} src={wine} />}
+      {checkers && <div style={makeStyle(blackChecker)} className={`${styles.blackChecker} ${styles.space} ${styles.black}`}></div>}
+      {pets && <div style={makeStyle(cat)} className={`${styles.cat} ${styles.space} ${styles.black}`}></div>}
+      {drinks && <div style={makeStyle(wine)} className={`${styles.wine} ${styles.space} ${styles.black}`}></div>}
     </>
   );
   const openSpace = (
-    <div className={styles.openSpace}></div>
+    <div className={styles.space}></div>
   );
   
   return (

@@ -1,15 +1,21 @@
 .Board {
   box-sizing: content-box;
   display: grid;
+  
   grid-template-columns: repeat(7, 10vh);
   grid-template-rows: repeat(6, 10vh);
-
   width: 70vh;
-  border: 0.15em solid black;
+  padding: 2.5vh;
 
   @media (orientation: portrait) {
-    width: 70vw;
     grid-template-columns: repeat(7, 10vw);
     grid-template-rows: repeat(6, 10vw);
+    width: 70vw;
+    padding: 2.5vw;
   }
+
+  border: 0.15em solid black;
+  border-radius: 0.3em;
+  background-color: yellow;
+
 }

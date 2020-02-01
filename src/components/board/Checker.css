@@ -3,13 +3,34 @@
   justify-content: center;
   align-items: center;
 
-  .openSpace {
+  .space {
     width: 100px;
-    max-width: 60%;
-    margin-top: 20%;
+    max-width: 80%;
+    margin-top: 10%;
     border-radius: 100%;
     background-color: white;
-
+    box-shadow: 1px 1px blue;
+    
+    &.black, &.red {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 120%;
+    }
+    &.redChecker {
+      box-shadow: none;
+      background-size: 180%;
+    } 
+    &.blackChecker {
+      box-shadow: none;
+      background-size: 175%;
+    }
+    &.cat {
+      background-size: 95%;
+    }
+    &.wine {
+      background-size: 85%;
+    }
+  
     /* responsive square method comes from the following post on Atomic Object:
       https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */
     &:after {
@@ -18,22 +39,5 @@
       padding-bottom: 100%;
     }
   }
-    
-  img {
-    max-width: 100%;
-
-    &.cat {
-      max-width: 80%;
-      padding-top: 10%;
-    }
-    &.beer {
-      padding-top: 17%;
-    }
-    &.wine {
-      max-width: 70%;
-      padding-top: 15%;
-    }
-  }
-
 }
 
