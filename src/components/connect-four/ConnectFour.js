@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Board from '../board/Board';
 import { Connect4AI } from 'connect4-ai';
+import Board from '../board/Board';
 import useConnectFourLogic from './useConnectFourLogic';
 
 const game = new Connect4AI();
