@@ -18,6 +18,9 @@ export default (rows, columns, colors, playerNames) => {
   const [board, setBoard] = useState(initialBoard);
   const [playerIndex, setPlayerIndex] = useState(0);
   const [gameOver, endGame] = useState(false);
+  const [aiPlay, setAiPlay] = useState(null);
+  const [aiStatus, setAiStatus] = useState(null);
+  const [aiThinking, setAiThinking] = useState(false);
 
   const getPlayerName = () => playerNames[playerIndex];
   const getPlayerColor = () => colors[playerIndex];
@@ -58,11 +61,34 @@ export default (rows, columns, colors, playerNames) => {
     }
   };
 
+  const makeAiPlay = play => setAiPlay(play);
+  const makeAiStatus = status => setAiStatus(status);
+
+  useEffect(() => {
+    if(aiPlay !== null) {
+      setAiThinking(true);
+      setTimeout(() => {
+        setAiThinking(false);
+        setAiPlay(null);
+      }, 1000);
+      return () => {
+        const { id, status: squareStatus } = board.find(({ id, status }) => (getColumn(id) === aiPlay) && (status === 'valid'));
+        if(squareStatus !== 'valid') return;
+
+        updateStatus(aiStatus);
+        updateBoard({ playedId: id });
+      };
+    }
+  }, [aiPlay]);
+
   return {
     status,
     updateStatus,
     board,
     updateBoard,
+    makeAiPlay,
+    makeAiStatus,
+    aiThinking,
     gameOver,
     getColumn,
   };

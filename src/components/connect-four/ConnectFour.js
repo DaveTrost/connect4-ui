@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Board from '../board/Board';
-import Connect4 from 'connect4-ai';
+import { Connect4AI } from 'connect4-ai';
 import useConnectFourLogic from './useConnectFourLogic';
 
-const game = new Connect4();
+const game = new Connect4AI();
 const columns = 7;
 const rows = 6;
 const colors = ['red', 'black'];
@@ -15,7 +15,10 @@ const ConnectFour = ({ playerNames }) => {
     status,
     updateStatus, 
     board, 
-    updateBoard, 
+    updateBoard,
+    makeAiPlay,
+    makeAiStatus,
+    aiThinking,
     gameOver, 
     getColumn 
   } = useConnectFourLogic(rows, columns, colors, playerNames || defaultPlayerNames);
@@ -25,8 +28,14 @@ const ConnectFour = ({ playerNames }) => {
     if(status !== 'valid' || gameOver) return;
     
     game.play(getColumn(id));
-    updateStatus(game.gameStatus());
+    const statusUpdate = game.gameStatus();
+    updateStatus(statusUpdate);
     updateBoard({ playedId: id });
+    
+    if(statusUpdate.gameOver) return;
+
+    makeAiPlay(game.playAI('hard'));
+    makeAiStatus(game.gameStatus());
   };
 
   return (
@@ -47,6 +56,7 @@ const ConnectFour = ({ playerNames }) => {
           Drinks
         </label>
       </p>
+      {aiThinking && <p>Computer is thinking ...</p>}
     </>
   );
 };
