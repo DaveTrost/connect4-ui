@@ -9,8 +9,21 @@ const columns = 7;
 const rows = 6;
 const colors = ['red', 'black'];
 const defaultPlayerNames = ['Player 1', 'Player 2'];
+const getOptions = options => {
+  let { playerNames, humanVsHuman, computerFirst, aiDifficulty, userMotif } = options || {};
+  humanVsHuman = humanVsHuman || false;
+  computerFirst = computerFirst || false;
+  aiDifficulty = aiDifficulty || 'medium';
+  userMotif = userMotif || 'default';
+  playerNames = playerNames || defaultPlayerNames;    
+  if(!humanVsHuman) {
+    playerNames[computerFirst ? 0 : 1] = `Computer (${aiDifficulty})`;
+  }
+  return { playerNames, humanVsHuman, computerFirst, aiDifficulty, userMotif };
+};
 
-const ConnectFour = ({ playerNames }) => {
+const ConnectFour = ({ options }) => {
+  const { playerNames, humanVsHuman, computerFirst, aiDifficulty, userMotif } = getOptions(options);
   const { 
     status,
     updateStatus, 
@@ -21,25 +34,32 @@ const ConnectFour = ({ playerNames }) => {
     aiThinking,
     gameOver, 
     getColumn 
-  } = useConnectFourLogic(rows, columns, colors, playerNames || defaultPlayerNames);
-  const [motif, setMotif] = useState('default');
+  } = useConnectFourLogic(rows, columns, colors, playerNames);
+  const [motif, setMotif] = useState(userMotif);
   
+  if(game.getMoveCount() === 0 && computerFirst && !humanVsHuman) {
+    makeAiPlay(game.playAI(aiDifficulty));
+    makeAiStatus(game.gameStatus());
+  }
+
   const handlePlay = ({ id, status }) => {
-    if(status !== 'valid' || gameOver) return;
+    if(status !== 'valid' || gameOver || aiThinking) return;
     
     game.play(getColumn(id));
     const statusUpdate = game.gameStatus();
     updateStatus(statusUpdate);
     updateBoard({ playedId: id });
     
+    if(humanVsHuman) return;
     if(statusUpdate.gameOver) return;
 
-    makeAiPlay(game.playAI('hard'));
+    makeAiPlay(game.playAI(aiDifficulty));
     makeAiStatus(game.gameStatus());
   };
 
   return (
     <>
+      <h1>{`${playerNames[0]} vs. ${playerNames[1]}`}</h1>
       <p>{status}</p>
       <Board board={board} handleClick={handlePlay} motif={motif} />
       <p>Checker style: 
@@ -62,9 +82,15 @@ const ConnectFour = ({ playerNames }) => {
 };
 
 ConnectFour.propTypes = {
-  playerNames: PropTypes.arrayOf(
-    PropTypes.string.isRequired
-  ),
+  options: PropTypes.shape({
+    playerNames: PropTypes.arrayOf(
+      PropTypes.string.isRequired
+    ),
+    humanVsHuman: PropTypes.bool,
+    computerFirst: PropTypes.bool,
+    aiDifficulty: PropTypes.oneOf(['hard', 'medium', 'easy']),
+    userMotif: PropTypes.oneOf(['default', 'pets', 'drinks']),
+  })
 };
 
 export default ConnectFour;
