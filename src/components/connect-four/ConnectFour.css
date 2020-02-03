@@ -24,7 +24,11 @@
 
   div {
     h1 {
+      font-size: calc(0.9em + 0.5vw);
       margin-top: 50px;
+    }
+    h2 {
+      font-size: calc(0.9em + 0.5vw);
     }
   }
 }
