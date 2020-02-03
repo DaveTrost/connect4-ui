@@ -3,19 +3,20 @@
   justify-content: center;
   align-items: center;
 
-  .space {
+  div {
     width: 100px;
     max-width: 80%;
+
     margin-top: 10%;
     border-radius: 100%;
+    
     background-color: #FFFFF2;
     box-shadow: 1px 1px blue;
     
-    &.black, &.red {
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 120%;
-    }
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 120%;
+
     &.redChecker {
       box-shadow: none;
       background-size: 180%;

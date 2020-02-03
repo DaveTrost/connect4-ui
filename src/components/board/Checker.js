@@ -35,24 +35,24 @@ const Checker = ({ status, motif }) => {
 
   const redPiece = (
     <>
-      {checkers && <div style={makeStyle(redChecker)} className={`${styles.redChecker} ${styles.space} ${styles.red}`}></div>}
-      {pets && <div style={makeStyle(dog)} className={`${styles.dog} ${styles.space} ${styles.red}`}></div>}
-      {drinks && <div style={makeStyle(beer)} className={`${styles.beer} ${styles.space} ${styles.red}`}></div>}
-      {fantasy && <div style={makeStyle(mermaid)} className={`${styles.mermaid} ${styles.space} ${styles.red}`}></div>}
-      {ocean && <div style={makeStyle(oceanPink)} className={`${styles.shark} ${styles.space} ${styles.red}`}></div>}
+      {checkers && <div style={makeStyle(redChecker)} className={styles.redChecker}></div>}
+      {pets && <div style={makeStyle(dog)} className={styles.dog}></div>}
+      {drinks && <div style={makeStyle(beer)} className={styles.beer}></div>}
+      {fantasy && <div style={makeStyle(mermaid)} className={styles.mermaid}></div>}
+      {ocean && <div style={makeStyle(oceanPink)} className={styles.shark}></div>}
     </>
   );
   const blackPiece = (
     <>
-      {checkers && <div style={makeStyle(blackChecker)} className={`${styles.blackChecker} ${styles.space} ${styles.black}`}></div>}
-      {pets && <div style={makeStyle(cat)} className={`${styles.cat} ${styles.space} ${styles.black}`}></div>}
-      {drinks && <div style={makeStyle(wine)} className={`${styles.wine} ${styles.space} ${styles.black}`}></div>}
-      {fantasy && <div style={makeStyle(unicorn)} className={`${styles.unicorn} ${styles.space} ${styles.black}`}></div>}
-      {ocean && <div style={makeStyle(oceanBlue)} className={`${styles.narwhal} ${styles.space} ${styles.black}`}></div>}
+      {checkers && <div style={makeStyle(blackChecker)} className={styles.blackChecker}></div>}
+      {pets && <div style={makeStyle(cat)} className={styles.cat}></div>}
+      {drinks && <div style={makeStyle(wine)} className={styles.wine}></div>}
+      {fantasy && <div style={makeStyle(unicorn)} className={styles.unicorn}></div>}
+      {ocean && <div style={makeStyle(oceanBlue)} className={styles.narwhal}></div>}
     </>
   );
   const openSpace = (
-    <div className={styles.space}></div>
+    <div></div> 
   );
   
   return (
