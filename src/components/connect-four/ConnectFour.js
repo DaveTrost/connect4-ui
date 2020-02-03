@@ -20,7 +20,7 @@ const getOptions = options => {
   if(userMotif === 'ocean') colors = ['pink', 'blue'];
   playerNames = playerNames || defaultPlayerNames;    
   if(!humanVsHuman) {
-    playerNames[computerFirst ? 0 : 1] = `Computer-${aiDifficulty}`;
+    playerNames[computerFirst ? 0 : 1] = `Computer(${aiDifficulty})`;
   }
   return { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif };
 };
@@ -64,7 +64,7 @@ const ConnectFour = ({ options }) => {
     <section className={styles.ConnectFour}>
       <img src={connectFourTitle} />
       <div>
-        <h1>{`${playerNames[0]} - vs - ${playerNames[1]}`}</h1>
+        <h1>{`${playerNames[0]} vs. ${playerNames[1]}`}</h1>
         <Board board={board} handleClick={handlePlay} motif={userMotif} />
         {/* <p>Checker style: 
           <label onClick={() => setMotif('default')}>
@@ -80,8 +80,8 @@ const ConnectFour = ({ options }) => {
             Drinks
           </label>
         </p> */}
-        <h2>{infoMsg}</h2>
-        {aiThinking && <h3>Computer is thinking ...</h3>}
+        <h2>Status: {infoMsg} <span>{aiThinking && '... Computer is thinking ...'}</span></h2>
+        
       </div>
     </section>
   );
