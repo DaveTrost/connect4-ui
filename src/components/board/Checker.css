@@ -8,7 +8,7 @@
     max-width: 80%;
     margin-top: 10%;
     border-radius: 100%;
-    background-color: white;
+    background-color: #FFFFF2;
     box-shadow: 1px 1px blue;
     
     &.black, &.red {

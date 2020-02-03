@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Connect4AI } from 'connect4-ai';
 import Board from '../board/Board';
 import useConnectFourLogic from './useConnectFourLogic';
+import styles from './ConnectFour.css';
+import connectFourTitle from '../../assets/connect-four-title.png';
 
 const game = new Connect4AI();
 const columns = 7;
@@ -34,8 +36,7 @@ const ConnectFour = ({ options }) => {
     aiThinking,
     gameOver, 
     getColumn 
-  } = useConnectFourLogic(rows, columns, colors, playerNames);
-  const [motif, setMotif] = useState(userMotif);
+  // const [motif, setMotif] = useState(userMotif);
   
   if(game.getMoveCount() === 0 && computerFirst && !humanVsHuman) {
     makeAiPlay(game.playAI(aiDifficulty));
@@ -58,26 +59,29 @@ const ConnectFour = ({ options }) => {
   };
 
   return (
-    <>
-      <h1>{`${playerNames[0]} vs. ${playerNames[1]}`}</h1>
-      <p>{status}</p>
-      <Board board={board} handleClick={handlePlay} motif={motif} />
-      <p>Checker style: 
-        <label onClick={() => setMotif('default')}>
-          <input type='radio' id='default' name='motif' value='default' defaultChecked />
-          Default
-        </label>
-        <label onClick={() => setMotif('pets')}>
-          <input type='radio' id='pets' name='motif' value='pets' />
-          Pets
-        </label>
-        <label onClick={() => setMotif('drinks')}>
-          <input type='radio' id='drinks' name='motif' value='drinks' />
-          Drinks
-        </label>
-      </p>
-      {aiThinking && <p>Computer is thinking ...</p>}
-    </>
+    <section className={styles.ConnectFour}>
+      <img src={connectFourTitle} />
+      <div>
+        <h1>{`${playerNames[0]} - vs - ${playerNames[1]}`}</h1>
+        <Board board={board} handleClick={handlePlay} motif={userMotif} />
+        {/* <p>Checker style: 
+          <label onClick={() => setMotif('default')}>
+            <input type='radio' id='default' name='motif' value='default' defaultChecked />
+            Default
+          </label>
+          <label onClick={() => setMotif('pets')}>
+            <input type='radio' id='pets' name='motif' value='pets' />
+            Pets
+          </label>
+          <label onClick={() => setMotif('drinks')}>
+            <input type='radio' id='drinks' name='motif' value='drinks' />
+            Drinks
+          </label>
+        </p> */}
+        <h2>{infoMsg}</h2>
+        {aiThinking && <h3>Computer is thinking ...</h3>}
+      </div>
+    </section>
   );
 };
 
