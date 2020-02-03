@@ -24,11 +24,20 @@
 
   div {
     h1 {
-      font-size: calc(0.9em + 0.5vw);
       margin-top: 50px;
     }
-    h2 {
+    h1, h2, h3 {
       font-size: calc(0.9em + 0.5vw);
     }
+    h3 {
+      position: fixed;
+      top: 50%;
+      bottom: 50%;
+
+      padding-left: 10vh;
+      @media (orientation: portrait) {
+        padding-left: 10vw;
+      }
+      }
   }
 }
