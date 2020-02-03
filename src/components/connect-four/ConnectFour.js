@@ -28,21 +28,21 @@ const getOptions = options => {
 const ConnectFour = ({ options }) => {
   const { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif } = getOptions(options);
   const { 
-    status,
-    updateStatus, 
-    board, 
+    infoMsg,
+    updateInfoMsg,
+    board,
     updateBoard,
     makeAiPlay,
-    makeAiStatus,
+    makeAiInfoMsg,
     aiThinking,
-    gameOver, 
-    getColumn 
+    gameOver,
+    getColumn
   } = useConnectFourLogic(rows, columns, colors);
   // const [motif, setMotif] = useState(userMotif);
   
   if(game.getMoveCount() === 0 && computerFirst && !humanVsHuman) {
     makeAiPlay(game.playAI(aiDifficulty));
-    makeAiStatus(game.gameStatus());
+    makeAiInfoMsg(game.gameStatus());
   }
 
   const handlePlay = ({ id, status }) => {
@@ -50,14 +50,14 @@ const ConnectFour = ({ options }) => {
     
     game.play(getColumn(id));
     const statusUpdate = game.gameStatus();
-    updateStatus(statusUpdate);
+    updateInfoMsg(statusUpdate);
     updateBoard({ playedId: id });
     
     if(humanVsHuman) return;
     if(statusUpdate.gameOver) return;
 
     makeAiPlay(game.playAI(aiDifficulty));
-    makeAiStatus(game.gameStatus());
+    makeAiInfoMsg(game.gameStatus());
   };
 
   return (
