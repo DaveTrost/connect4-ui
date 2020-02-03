@@ -12,7 +12,7 @@
     
     background-color: #FFFFF2;
     box-shadow: 1px 1px #2274A5;
-    
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: 120%;
@@ -36,6 +36,13 @@
     }
     &.narwhal, &.unicorn, &.mermaid {
       background-size: 105%;
+    }
+    
+    &.isSolution {
+      box-shadow: 0 0 1vw #2274A5, 0 0 1.5vw 1vw red;
+      @media (orientation: portrait) {
+        box-shadow: 0 0 1vh #2274A5, 0 0 1.5vh 1vh red;
+      }
     }
     
     /* responsive square method comes from the following post on Atomic Object:
