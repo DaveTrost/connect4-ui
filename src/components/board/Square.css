@@ -1,0 +1,11 @@
+.Square {
+  width: 100%;
+  height: 100%;
+}
+
+.valid {
+  cursor: pointer;
+  &:hover {
+    background-color: yellowgreen;
+  }
+}

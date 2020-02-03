@@ -1,0 +1,57 @@
+.Checker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    width: 100px;
+    max-width: 80%;
+
+    margin-top: 10%;
+    border-radius: 100%;
+    
+    background-color: #FFFFF2;
+    box-shadow: 1px 1px #2274A5;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 120%;
+
+    &.redChecker {
+      box-shadow: none;
+      background-size: 180%;
+    } 
+    &.blackChecker {
+      box-shadow: none;
+      background-size: 175%;
+    }
+    &.cat {
+      background-size: 95%;
+    }
+    &.wine {
+      background-size: 85%;
+    }
+    &.shark {
+      background-size: 140%;
+    }
+    &.narwhal, &.unicorn, &.mermaid {
+      background-size: 105%;
+    }
+    
+    &.isSolution {
+      box-shadow: 0 0 1vw #2274A5, 0 0 1.5vw 1vw red;
+      @media (orientation: portrait) {
+        box-shadow: 0 0 1vh #2274A5, 0 0 1.5vh 1vh red;
+      }
+    }
+    
+    /* responsive square method comes from the following post on Atomic Object:
+      https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+  }
+}
+
