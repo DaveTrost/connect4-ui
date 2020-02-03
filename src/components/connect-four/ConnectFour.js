@@ -51,11 +51,11 @@ const ConnectFour = ({ options }) => {
     game.play(getColumn(id));
     const statusUpdate = game.gameStatus();
     updateInfoMsg(statusUpdate);
-    updateBoard({ playedId: id });
+    updateBoard({ playedId: id, solution: statusUpdate.solution });
     
     if(humanVsHuman) return;
     if(statusUpdate.gameOver) return;
-
+    
     makeAiPlay(game.playAI(aiDifficulty));
     makeAiInfoMsg(game.gameStatus());
   };

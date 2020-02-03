@@ -16,6 +16,7 @@ Board.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       status: PropTypes.oneOf(['red', 'black', 'open', 'valid']).isRequired,
+      isSolution: PropTypes.bool,
     }).isRequired
   ).isRequired,
   handleClick: PropTypes.func.isRequired,

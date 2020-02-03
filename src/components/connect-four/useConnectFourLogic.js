@@ -12,7 +12,8 @@ export default (rows, columns, colors) => {
     const row = Math.floor(i / columns);
     const col = i % columns;
     const status = (row === rows - 1) ? 'valid' : 'open';
-    return { id: makeId(col, row), status };
+    const isSolution = false;
+    return { id: makeId(col, row), status, isSolution };
   });
   const [infoMsg, setInfoMsg] = useState(initialInfoMsg);
   const [board, setBoard] = useState(initialBoard);
@@ -23,25 +24,36 @@ export default (rows, columns, colors) => {
   const [aiThinking, setAiThinking] = useState(false);
 
   const getPlayerColor = () => colors[playerIndex];
+  const solutionCellToId = ({ column, spacesFromBottom }) => makeId(column, rows - 1 - spacesFromBottom);
 
   useEffect(() => {
     if(gameOver) {
       setBoard(board.map(square => ({ 
-        ...square, 
+        ...square,
         status: (square.status === 'valid') ? 'open' : square.status
       })));
     }
   }, [gameOver]);
 
-  const updateBoard = ({ playedId }) => {
+  const updateBoard = ({ playedId, solution }) => {
+    const solutionIds = [];
+    if(solution) {
+      solution.forEach(cell => solutionIds.push(solutionCellToId(cell)));
+    }
+    
     setBoard(board.map(square => {
+      let isSolution = false;
+      if(solutionIds.includes(square.id)) {
+        isSolution = true;
+        console.log('isSolution!');
+      }
       if(square.id === playedId) {
-        return { ...square, status: getPlayerColor() };
+        return { ...square, status: getPlayerColor(), isSolution };
       } 
       if(square.id === getAboveId(playedId)) {
-        return { ...square, status: 'valid' };
+        return { ...square, status: 'valid', isSolution };
       }
-      return square;
+      return { ...square, isSolution };
     }));
   };
 
@@ -75,7 +87,7 @@ export default (rows, columns, colors) => {
         if(status !== 'valid') return;
 
         updateInfoMsg(aiInfoMsg);
-        updateBoard({ playedId: id });
+        updateBoard({ playedId: id, solution: aiInfoMsg.solution });
       };
     }
   }, [aiPlay]);
