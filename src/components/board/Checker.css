@@ -30,7 +30,13 @@
     &.wine {
       background-size: 85%;
     }
-  
+    &.shark {
+      background-size: 140%;
+    }
+    &.narwhal, &.unicorn, &.mermaid {
+      background-size: 105%;
+    }
+    
     /* responsive square method comes from the following post on Atomic Object:
       https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */
     &:after {

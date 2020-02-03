@@ -9,23 +9,24 @@ import connectFourTitle from '../../assets/connect-four-title.png';
 const game = new Connect4AI();
 const columns = 7;
 const rows = 6;
-const colors = ['red', 'black'];
 const defaultPlayerNames = ['Player 1', 'Player 2'];
 const getOptions = options => {
-  let { playerNames, humanVsHuman, computerFirst, aiDifficulty, userMotif } = options || {};
+  let { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif } = options || {};
   humanVsHuman = humanVsHuman || false;
   computerFirst = computerFirst || false;
   aiDifficulty = aiDifficulty || 'medium';
   userMotif = userMotif || 'default';
+  colors = ['red', 'black'];
+  if(userMotif === 'ocean') colors = ['pink', 'blue'];
   playerNames = playerNames || defaultPlayerNames;    
   if(!humanVsHuman) {
-    playerNames[computerFirst ? 0 : 1] = `Computer (${aiDifficulty})`;
+    playerNames[computerFirst ? 0 : 1] = `Computer-${aiDifficulty}`;
   }
-  return { playerNames, humanVsHuman, computerFirst, aiDifficulty, userMotif };
+  return { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif };
 };
 
 const ConnectFour = ({ options }) => {
-  const { playerNames, humanVsHuman, computerFirst, aiDifficulty, userMotif } = getOptions(options);
+  const { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif } = getOptions(options);
   const { 
     status,
     updateStatus, 
@@ -36,6 +37,7 @@ const ConnectFour = ({ options }) => {
     aiThinking,
     gameOver, 
     getColumn 
+  } = useConnectFourLogic(rows, columns, colors);
   // const [motif, setMotif] = useState(userMotif);
   
   if(game.getMoveCount() === 0 && computerFirst && !humanVsHuman) {
@@ -93,7 +95,7 @@ ConnectFour.propTypes = {
     humanVsHuman: PropTypes.bool,
     computerFirst: PropTypes.bool,
     aiDifficulty: PropTypes.oneOf(['hard', 'medium', 'easy']),
-    userMotif: PropTypes.oneOf(['default', 'pets', 'drinks']),
+    userMotif: PropTypes.oneOf(['default', 'pets', 'fantasy', 'drinks', 'ocean']),
   })
 };
 
