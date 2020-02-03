@@ -80,8 +80,8 @@ const ConnectFour = ({ options }) => {
             Drinks
           </label>
         </p> */}
-        <h2>Status: {infoMsg} <span>{aiThinking && '... Computer is thinking ...'}</span></h2>
-        
+        <h2>Status: {infoMsg}</h2>
+        {aiThinking && <h3>Computer is thinking ...</h3>}
       </div>
     </section>
   );
