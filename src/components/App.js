@@ -4,9 +4,9 @@ import ConnectFour from './connect-four/ConnectFour';
 export default function App() {
   const options = {
     playerNames: ['Player 1', 'Player 2'],
-    humanVsHuman: true,
+    humanVsHuman: false,
     computerFirst: false,
-    aiDifficulty: 'easy',
+    aiDifficulty: 'hard',
     userMotif: 'default',
   };
   return (

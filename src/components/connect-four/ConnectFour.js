@@ -20,7 +20,7 @@ const getOptions = options => {
   if(userMotif === 'ocean') colors = ['pink', 'blue'];
   playerNames = playerNames || defaultPlayerNames;    
   if(!humanVsHuman) {
-    playerNames[computerFirst ? 0 : 1] = `Computer(${aiDifficulty})`;
+    playerNames[computerFirst ? 0 : 1] = 'Computer';
   }
   return { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif };
 };
