@@ -1,0 +1,32 @@
+.Settings {
+  position: fixed;
+
+  width: 100vh;
+  @media (orientation: portrait) {
+    width: 100vw;
+  }
+  max-width: 700px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  bottom: 0;
+
+  button {
+    font-size: 1em;
+    font-family: sans-serif;
+    color: #fffff2be;
+
+    margin: 0.5em;
+
+    border: 1px solid #3A3335;
+    border-radius: 5px;
+    background-color: rgba(58, 51, 53, 0.438);
+
+    &:hover {
+      border: 1px solid #fffff2;
+    }
+  }
+
+}

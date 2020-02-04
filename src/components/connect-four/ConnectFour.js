@@ -61,29 +61,12 @@ const ConnectFour = ({ options }) => {
   };
 
   return (
-    <section className={styles.ConnectFour}>
-      <img src={connectFourTitle} />
-      <div>
-        <h1>{`${playerNames[0]} vs. ${playerNames[1]}`}</h1>
-        <Board board={board} handleClick={handlePlay} motif={userMotif} />
-        {/* <p>Checker style: 
-          <label onClick={() => setMotif('default')}>
-            <input type='radio' id='default' name='motif' value='default' defaultChecked />
-            Default
-          </label>
-          <label onClick={() => setMotif('pets')}>
-            <input type='radio' id='pets' name='motif' value='pets' />
-            Pets
-          </label>
-          <label onClick={() => setMotif('drinks')}>
-            <input type='radio' id='drinks' name='motif' value='drinks' />
-            Drinks
-          </label>
-        </p> */}
-        <h2>Status: {infoMsg}</h2>
-        {aiThinking && <h3>Computer is thinking ...</h3>}
-      </div>
-    </section>
+    <div className={styles.ConnectFour}>
+      <h1>{`${playerNames[0]} vs. ${playerNames[1]}`}</h1>
+      <Board board={board} handleClick={handlePlay} motif={userMotif} />
+      <h2>Status: {infoMsg}</h2>
+      {aiThinking && <h3>Computer is thinking ...</h3>}
+    </div>
   );
 };
 
