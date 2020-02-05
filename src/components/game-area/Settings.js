@@ -6,82 +6,121 @@ const Settings = ({ options, handleNewOptions, handleResetButton }) => {
   const [showSettings, setShowSettings] = useState(false);
 
   const toggleSettings = () => setShowSettings(!showSettings);
-  const setPlayers = players => handleNewOptions({ ...options, humanVsHuman: (players === 'vsHuman') });
   const setName1 = ({ target }) => handleNewOptions({ ...options, playerNames: [target.value, options.playerNames[1]] });
   const setName2 = ({ target }) => handleNewOptions({ ...options, playerNames: [options.playerNames[0], target.value] });
   const setDifficulty = aiDifficulty => handleNewOptions({ ...options, aiDifficulty });
   const setMotif = userMotif => handleNewOptions({ ...options, userMotif });
+  const handleHumanVsHuman = ({ target }) => {
+    const playerNames = target.checked ? [options.playerNames[0], 'Player 2'] : options.playerNames;
+    return handleNewOptions({ ...options, playerNames, humanVsHuman: target.checked });
+  };
 
   return (
     <>
-      <div className={styles.Settings}>
-        <button onClick={handleResetButton}>New Game</button>
-        <button onClick={toggleSettings}>Settings</button>
+      <div className={styles.settings}>
+        <button className={styles.button} onClick={handleResetButton}>New Game</button>
+        <button className={styles.button} onClick={toggleSettings}>Settings</button>
       </div>
       {showSettings &&
-        <div className={styles.SettingsPanel}>
+        <div className={styles.settingsPanel}>
+          <h3>Players</h3>
           <div>
-            <h3>Players</h3>
-            <label onClick={() => setPlayers('vsComputer')}>
-              <input type='radio' id='vsComputer' name='players' value='vsComputer' defaultChecked />
-              Human vs. Computer
-            </label>
-            <label onClick={() => setPlayers('vsHuman')}>
-              <input type='radio' id='vsHuman' name='players' value='vsHuman' />
-              Human vs. Human
+            <label>
+              Player 1 name: 
+              <input type='text' value={options.playerNames[0]} onChange={setName1} />
             </label>
           </div>
           <div>
             <label>
-              Name of first player: 
-              <input type='text' value={options.playerNames[0]} onChange={setName1} />
+              <input type='checkbox' checked={options.humanVsHuman} name='humanVsHuman' onChange={handleHumanVsHuman} />
+              2 player game
             </label>
           </div>
           {options.humanVsHuman &&
             <div>
               <label>
-              Name of second player: 
+                Player 2 name: 
                 <input type='text' value={options.playerNames[1]} onChange={setName2} />
               </label>
             </div>
           }
-          <div>
-            <h3>AI difficulty</h3>
-            <label onClick={() => setDifficulty('hard')}>
-              <input type='radio' id='easy' name='difficulty' value='easy' defaultChecked />
-              Hard
+          <h3>Computer Difficulty</h3>
+          {!options.humanVsHuman &&
+            <div className={styles.radioList}>
+              <label>
+                <input 
+                  type='radio' id='hard' name='difficulty' value='hard' 
+                  checked={options.aiDifficulty === 'hard'} 
+                  onChange={() => setDifficulty('hard')} 
+                />
+                Hard
+              </label>
+              <label>
+                <input 
+                  type='radio' id='medium' name='difficulty' value='medium' 
+                  checked={options.aiDifficulty === 'medium'}
+                  onChange={() => setDifficulty('medium')}
+                />
+                Medium
+              </label>
+              <label>
+                <input 
+                  type='radio' id='easy' name='difficulty' value='easy' 
+                  checked={options.aiDifficulty === 'easy'} 
+                  onChange={() => setDifficulty('easy')}
+                />
+                Easy
+              </label>
+            </div>
+          }
+          {options.humanVsHuman && 
+            <p>N/A</p>
+          }
+          <h3>Checker Style</h3>
+          <div className={styles.radioList}>
+            <label>
+              <input 
+                type='radio' id='checkers' name='motif' value='checkers' 
+                checked={options.userMotif === 'checkers'} 
+                onChange={() => setMotif('checkers')}
+              />
+              Checkers
             </label>
-            <label onClick={() => setDifficulty('medium')}>
-              <input type='radio' id='medium' name='difficulty' value='medium' />
-              Medium
+            <label>
+              <input 
+                type='radio' id='pets' name='motif' value='pets' 
+                checked={options.userMotif === 'pets'} 
+                onChange={() => setMotif('pets')}
+              />
+              Pets
             </label>
-            <label onClick={() => setDifficulty('easy')}>
-              <input type='radio' id='easy' name='difficulty' value='easy' />
-              Easy
+            <label>
+              <input 
+                type='radio' id='drinks' name='motif' value='drinks' 
+                checked={options.userMotif === 'drinks'} 
+                onChange={() => setMotif('drinks')}
+              />
+              Drinks
+            </label>
+            <label>
+              <input 
+                type='radio' id='fantasy' name='motif' value='fantasy' 
+                checked={options.userMotif === 'fantasy'} 
+                onChange={() => setMotif('fantasy')}
+              />
+              Fantasy
+            </label>
+            <label>
+              <input 
+                type='radio' id='ocean' name='motif' value='ocean' 
+                checked={options.userMotif === 'ocean'} 
+                onChange={() => setMotif('ocean')}
+              />
+              Ocean
             </label>
           </div>
           <div>
-            <h3>Checker style: </h3>
-            <label onClick={() => setMotif('checkers')}>
-              <input type='radio' id='checkers' name='motif' value='checkers' defaultChecked />
-              Checkers
-            </label>
-            <label onClick={() => setMotif('pets')}>
-              <input type='radio' id='pets' name='motif' value='pets' />
-              Pets
-            </label>
-            <label onClick={() => setMotif('drinks')}>
-              <input type='radio' id='drinks' name='motif' value='drinks' />
-              Drinks
-            </label>
-            <label onClick={() => setMotif('fantasy')}>
-              <input type='radio' id='fantasy' name='motif' value='fantasy' />
-              Fantasy
-            </label>
-            <label onClick={() => setMotif('ocean')}>
-              <input type='radio' id='ocean' name='motif' value='ocean' />
-              Ocean
-            </label>
+            <button className={styles.button} onClick={toggleSettings}>OK</button>
           </div>
         </div>
       }
@@ -97,7 +136,7 @@ Settings.propTypes = {
     humanVsHuman: PropTypes.bool,
     computerFirst: PropTypes.bool,
     aiDifficulty: PropTypes.oneOf(['hard', 'medium', 'easy']),
-    userMotif: PropTypes.oneOf(['default', 'pets', 'fantasy', 'drinks', 'ocean']),
+    userMotif: PropTypes.oneOf(['checkers', 'pets', 'fantasy', 'drinks', 'ocean']),
   }).isRequired,
   handleNewOptions: PropTypes.func.isRequired,
   handleResetButton: PropTypes.func.isRequired,
