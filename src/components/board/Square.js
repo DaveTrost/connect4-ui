@@ -15,7 +15,7 @@ const Square = ({ id, status, isSolution, handleClick, motif }) => (
 
 Square.propTypes = {
   id: PropTypes.string.isRequired,
-  status: PropTypes.oneOf(['red', 'black', 'open', 'valid']).isRequired,
+  status: PropTypes.oneOf(['red', 'black', 'pink', 'blue', 'open', 'valid']).isRequired,
   isSolution: PropTypes.bool,
   handleClick: PropTypes.func.isRequired,
   motif: PropTypes.string,
