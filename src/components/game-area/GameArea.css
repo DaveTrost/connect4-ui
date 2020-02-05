@@ -1,0 +1,29 @@
+.GameArea {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  color: #3A3335;
+  font-family: sans-serif;
+  background-color: #2274A5;
+
+  padding-bottom: 50px;
+  @media (orientation: portrait), (min-height: 500px) {
+    padding-bottom: 0;
+  }
+
+  img {
+    width: 60vh;
+    max-width: 500px;
+    position: absolute;
+    top: 0;
+    
+    @media (orientation: portrait) {
+      width: 70vw;
+    }
+  }
+
+}

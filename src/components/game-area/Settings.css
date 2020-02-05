@@ -1,0 +1,79 @@
+.settings {
+  position: fixed;
+
+  width: 100vh;
+  @media (orientation: portrait) {
+    width: 100vw;
+  }
+  max-width: 700px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  bottom: 0;
+
+  button {
+    color: #fffff2be;
+    border: 1px solid #3A3335;
+    background-color: rgba(58, 51, 53, 0.438);
+    &:hover {
+      border: 1px solid #fffff2;
+    }
+  }
+}
+
+.button {
+  font-size: 1em;
+  font-family: sans-serif;
+  margin: 0.5em;
+  border-radius: 5px;
+}
+
+.settingsPanel {
+  z-index: 5;
+
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 20px;
+
+  background-color: #3a3335f1;
+  border: 3px solid #3a3335;
+  border-radius: 8px;
+
+  color: #fffff2;
+  
+  button {
+    color: #fffff2;
+    border: 1px solid #fffff2;
+    background-color: transparent;
+    &:hover {
+      background-color: #fffff275;
+    }
+  }
+
+  h3 {
+    margin: 10px;
+    margin-left: -10px;
+  }
+  label {
+    margin: 5px;
+  }
+  input[type='text'] {
+    margin-left: 10px;
+  }
+  input[type='checkbox'] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+}
+
+.radioList {
+  label {
+    display: block;
+  }
+}
