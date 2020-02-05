@@ -21,23 +21,20 @@ const getOptions = options => {
 };
 
 const GameArea = () => {
-  const [resetFlag, setResetFlag] = useState(false);
+  const initialOptions = getOptions();
 
-  let options = getOptions();
-  
-  options = {
-    playerNames: ['Player 1', 'Player 2'],
-    humanVsHuman: false,
-    computerFirst: false,
-    aiDifficulty: 'hard',
-    userMotif: 'default',
-  };
+  const [resetFlag, setResetFlag] = useState(false);
+  const [options, setOptions] = useState(initialOptions);
+
+  const handleNewOptions = options => setOptions(getOptions(options));
+  const handleResetGame = () => setResetFlag(false);
+  const handleResetButton = () => setResetFlag(true);
 
   return (
     <section className={styles.GameArea}>
       <img src={connectFourTitle} />
-      <ConnectFour options={options} resetGame={resetFlag} handleResetGame={() => setResetFlag(false)} />
-      <Settings handleResetButton={() => setResetFlag(true)} />
+      <ConnectFour options={options} resetGame={resetFlag} handleResetGame={handleResetGame} />
+      <Settings options={options} handleNewOptions={handleNewOptions} handleResetButton={handleResetButton} />
     </section>
   );
 };
