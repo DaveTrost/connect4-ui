@@ -25,16 +25,13 @@
       box-shadow: none;
       background-size: 175%;
     }
-    &.cat {
+    &.cat, &.whiteUnicorn {
       background-size: 95%;
     }
     &.wine {
       background-size: 85%;
     }
-    &.shark {
-      background-size: 140%;
-    }
-    &.narwhal, &.unicorn, &.mermaid {
+    &.narwhal, &.blackUnicorn, &.mermaid {
       background-size: 105%;
     }
     
