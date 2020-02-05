@@ -11,7 +11,10 @@
   background-color: #2274A5;
 
   padding-bottom: 50px;
-  
+  @media (orientation: portrait), (min-height: 500px) {
+    padding-bottom: 0;
+  }
+
   img {
     width: 60vh;
     max-width: 500px;
