@@ -8,21 +8,6 @@ import styles from './ConnectFour.css';
 const game = new Connect4AI();
 const columns = 7;
 const rows = 6;
-const defaultPlayerNames = ['Player 1', 'Player 2'];
-const getOptions = options => {
-  let { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif } = options || {};
-  humanVsHuman = humanVsHuman || false;
-  computerFirst = computerFirst || false;
-  aiDifficulty = aiDifficulty || 'medium';
-  userMotif = userMotif || 'default';
-  colors = ['red', 'black'];
-  if(userMotif === 'ocean') colors = ['pink', 'blue'];
-  playerNames = playerNames || defaultPlayerNames;    
-  if(!humanVsHuman) {
-    playerNames[computerFirst ? 0 : 1] = 'Computer';
-  }
-  return { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif };
-};
 
 const ConnectFour = ({ options, resetGame, handleResetGame }) => {
   const { 
@@ -32,7 +17,7 @@ const ConnectFour = ({ options, resetGame, handleResetGame }) => {
     computerFirst, 
     aiDifficulty, 
     userMotif
-  } = getOptions(options);
+  } = options;
   const { 
     infoMsg,
     updateInfoMsg,
@@ -87,10 +72,13 @@ ConnectFour.propTypes = {
     playerNames: PropTypes.arrayOf(
       PropTypes.string.isRequired
     ),
+    colors: PropTypes.arrayOf(
+      PropTypes.string.isRequired
+    ),
     humanVsHuman: PropTypes.bool,
     computerFirst: PropTypes.bool,
     aiDifficulty: PropTypes.oneOf(['hard', 'medium', 'easy']),
-    userMotif: PropTypes.oneOf(['default', 'pets', 'fantasy', 'drinks', 'ocean']),
+    userMotif: PropTypes.oneOf(['checkers', 'pets', 'fantasy', 'drinks', 'ocean']),
   }),
   resetGame: PropTypes.bool,
   handleResetGame: PropTypes.func.isRequired,

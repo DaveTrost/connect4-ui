@@ -10,7 +10,7 @@ const getOptions = options => {
   humanVsHuman = humanVsHuman || false;
   computerFirst = computerFirst || false;
   aiDifficulty = aiDifficulty || 'medium';
-  userMotif = userMotif || 'default';
+  userMotif = userMotif || 'checkers';
   colors = ['red', 'black'];
   if(userMotif === 'ocean') colors = ['pink', 'blue'];
   playerNames = playerNames || defaultPlayerNames;    
