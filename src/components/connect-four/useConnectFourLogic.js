@@ -18,10 +18,11 @@ export default (rows, columns, colors) => {
   const [infoMsg, setInfoMsg] = useState(initialInfoMsg);
   const [board, setBoard] = useState(initialBoard);
   const [playerIndex, setPlayerIndex] = useState(0);
-  const [gameOver, endGame] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
   const [aiPlay, setAiPlay] = useState(null);
   const [aiInfoMsg, setAiInfoMsg] = useState(null);
   const [aiThinking, setAiThinking] = useState(false);
+  const [resetGame, setResetGame] = useState(false);
 
   const getPlayerColor = () => colors[playerIndex];
   const solutionCellToId = ({ column, spacesFromBottom }) => makeId(column, rows - 1 - spacesFromBottom);
@@ -33,7 +34,19 @@ export default (rows, columns, colors) => {
         status: (square.status === 'valid') ? 'open' : square.status
       })));
     }
-  }, [gameOver]);
+    if(resetGame) {
+      setBoard(initialBoard);
+      setInfoMsg(initialInfoMsg);
+      setPlayerIndex(0);
+      setGameOver(false);
+      setAiPlay(null);
+      setAiInfoMsg(null);
+      setAiThinking(false);
+      setResetGame(false);
+    }
+  }, [gameOver, resetGame]);
+
+  const newGame = () => setResetGame(true);
 
   const updateBoard = ({ playedId, solution }) => {
     const solutionIds = [];
@@ -42,11 +55,7 @@ export default (rows, columns, colors) => {
     }
     
     setBoard(board.map(square => {
-      let isSolution = false;
-      if(solutionIds.includes(square.id)) {
-        isSolution = true;
-        console.log('isSolution!');
-      }
+      const isSolution = solutionIds.includes(square.id);
       if(square.id === playedId) {
         return { ...square, status: getPlayerColor(), isSolution };
       } 
@@ -59,7 +68,7 @@ export default (rows, columns, colors) => {
 
   const updateInfoMsg = ({ gameOver, winner }) => {
     if(gameOver) {
-      endGame(true);
+      setGameOver(true);
       setInfoMsg(winner ?
         `${getPlayerColor()} wins!` :
         'Game Over. It is a draw.'
@@ -101,6 +110,7 @@ export default (rows, columns, colors) => {
     makeAiInfoMsg,
     aiThinking,
     gameOver,
+    newGame,
     getColumn,
   };
 };

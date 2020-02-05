@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import connectFourTitle from '../../assets/connect-four-title.png';
 import ConnectFour from '../connect-four/ConnectFour';
 import Settings from './Settings';
@@ -21,6 +21,8 @@ const getOptions = options => {
 };
 
 const GameArea = () => {
+  const [resetFlag, setResetFlag] = useState(false);
+
   let options = getOptions();
   
   options = {
@@ -34,8 +36,8 @@ const GameArea = () => {
   return (
     <section className={styles.GameArea}>
       <img src={connectFourTitle} />
-      <ConnectFour options={options} />
-      <Settings />
+      <ConnectFour options={options} resetGame={resetFlag} handleResetGame={() => setResetFlag(false)} />
+      <Settings handleResetButton={() => setResetFlag(true)} />
     </section>
   );
 };

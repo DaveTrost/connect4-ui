@@ -18,14 +18,14 @@ import styles from './Settings.css';
 //   return { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif };
 // };
 
-const Settings = () => {
+const Settings = ({ handleResetButton }) => {
 // const Settings = ({ options }) => {
   // options = getOptions();
   // const [motif, setMotif] = useState(userMotif);
   
   return (
     <div className={styles.Settings}>
-      <button>New Game</button>
+      <button onClick={handleResetButton}>New Game</button>
       <button>Settings</button>
       {/* <p>Checker style: 
         <label onClick={() => setMotif('default')}>
@@ -54,7 +54,8 @@ Settings.propTypes = {
     computerFirst: PropTypes.bool,
     aiDifficulty: PropTypes.oneOf(['hard', 'medium', 'easy']),
     userMotif: PropTypes.oneOf(['default', 'pets', 'fantasy', 'drinks', 'ocean']),
-  })
+  }),
+  handleResetButton: PropTypes.func.isRequired,
 };
 
 export default Settings;

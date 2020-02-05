@@ -24,8 +24,15 @@ const getOptions = options => {
   return { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif };
 };
 
-const ConnectFour = ({ options }) => {
-  const { playerNames, colors, humanVsHuman, computerFirst, aiDifficulty, userMotif } = getOptions(options);
+const ConnectFour = ({ options, resetGame, handleResetGame }) => {
+  const { 
+    playerNames, 
+    colors, 
+    humanVsHuman, 
+    computerFirst, 
+    aiDifficulty, 
+    userMotif
+  } = getOptions(options);
   const { 
     infoMsg,
     updateInfoMsg,
@@ -35,9 +42,16 @@ const ConnectFour = ({ options }) => {
     makeAiInfoMsg,
     aiThinking,
     gameOver,
+    newGame,
     getColumn
   } = useConnectFourLogic(rows, columns, colors);
   
+  if(resetGame && game.getMoveCount() > 0) {
+    game.reset();
+    newGame();
+    handleResetGame();
+  }
+
   if(game.getMoveCount() === 0 && computerFirst && !humanVsHuman) {
     makeAiPlay(game.playAI(aiDifficulty));
     makeAiInfoMsg(game.gameStatus());
@@ -77,7 +91,9 @@ ConnectFour.propTypes = {
     computerFirst: PropTypes.bool,
     aiDifficulty: PropTypes.oneOf(['hard', 'medium', 'easy']),
     userMotif: PropTypes.oneOf(['default', 'pets', 'fantasy', 'drinks', 'ocean']),
-  })
+  }),
+  resetGame: PropTypes.bool,
+  handleResetGame: PropTypes.func.isRequired,
 };
 
 export default ConnectFour;
