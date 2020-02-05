@@ -78,7 +78,7 @@ ConnectFour.propTypes = {
     humanVsHuman: PropTypes.bool,
     computerFirst: PropTypes.bool,
     aiDifficulty: PropTypes.oneOf(['hard', 'medium', 'easy']),
-    userMotif: PropTypes.oneOf(['checkers', 'pets', 'fantasy', 'drinks', 'ocean']),
+    userMotif: PropTypes.oneOf(['checkers', 'pets', 'unicorns', 'drinks', 'ocean']),
   }),
   resetGame: PropTypes.bool,
   handleResetGame: PropTypes.func.isRequired,

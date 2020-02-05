@@ -12,7 +12,8 @@ const getOptions = options => {
   aiDifficulty = aiDifficulty || 'medium';
   userMotif = userMotif || 'checkers';
   colors = ['red', 'black'];
-  if(userMotif === 'ocean') colors = ['pink', 'blue'];
+  if(userMotif === 'unicorns') colors = ['white', 'black'];
+  if(userMotif === 'ocean') colors = ['red', 'blue'];
   playerNames = playerNames || defaultPlayerNames;    
   if(!humanVsHuman) {
     playerNames[computerFirst ? 0 : 1] = 'Computer';

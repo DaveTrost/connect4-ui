@@ -104,11 +104,11 @@ const Settings = ({ options, handleNewOptions, handleResetButton }) => {
             </label>
             <label>
               <input 
-                type='radio' id='fantasy' name='motif' value='fantasy' 
-                checked={options.userMotif === 'fantasy'} 
-                onChange={() => setMotif('fantasy')}
+                type='radio' id='unicorns' name='motif' value='unicorns' 
+                checked={options.userMotif === 'unicorns'} 
+                onChange={() => setMotif('unicorns')}
               />
-              Fantasy
+              Unicorns
             </label>
             <label>
               <input 
@@ -136,7 +136,7 @@ Settings.propTypes = {
     humanVsHuman: PropTypes.bool,
     computerFirst: PropTypes.bool,
     aiDifficulty: PropTypes.oneOf(['hard', 'medium', 'easy']),
-    userMotif: PropTypes.oneOf(['checkers', 'pets', 'fantasy', 'drinks', 'ocean']),
+    userMotif: PropTypes.oneOf(['checkers', 'pets', 'unicorns', 'drinks', 'ocean']),
   }).isRequired,
   handleNewOptions: PropTypes.func.isRequired,
   handleResetButton: PropTypes.func.isRequired,

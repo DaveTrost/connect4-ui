@@ -15,7 +15,7 @@ Board.propTypes = {
   board: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      status: PropTypes.oneOf(['red', 'black', 'pink', 'blue', 'open', 'valid']).isRequired,
+      status: PropTypes.oneOf(['red', 'black', 'white', 'blue', 'open', 'valid']).isRequired,
       isSolution: PropTypes.bool,
     }).isRequired
   ).isRequired,
