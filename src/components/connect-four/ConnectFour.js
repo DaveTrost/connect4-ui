@@ -4,7 +4,6 @@ import { Connect4AI } from 'connect4-ai';
 import Board from '../board/Board';
 import useConnectFourLogic from './useConnectFourLogic';
 import styles from './ConnectFour.css';
-import connectFourTitle from '../../assets/connect-four-title.png';
 
 const game = new Connect4AI();
 const columns = 7;
@@ -38,7 +37,6 @@ const ConnectFour = ({ options }) => {
     gameOver,
     getColumn
   } = useConnectFourLogic(rows, columns, colors);
-  // const [motif, setMotif] = useState(userMotif);
   
   if(game.getMoveCount() === 0 && computerFirst && !humanVsHuman) {
     makeAiPlay(game.playAI(aiDifficulty));
